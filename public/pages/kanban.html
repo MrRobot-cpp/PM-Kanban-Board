@@ -1,6 +1,64 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanban Board</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <link rel="stylesheet" href="../css/kanban.css">
+</head>
+<body>
+    <header>
+        <h1>Board</h1>
+        <div class="users">
+            <div class="search-container">
+               
 
-<html>
+    <span>+3</span>
+        </div>
+    </header>
+    
+    <div class="search-container">
+       
 
+</div>
+<input type="text" id="search-input" placeholder="Search tasks...">
+</div>
+    <span>+3</span>
+</div>
+    <main class="kanban-board">
+        <!-- TO DO COLUMN -->
+        <div class="column" id="todo" ondrop="drop(event, 'todo')" ondragover="allowDrop(event)">
+            <h2>TO DO <span class="task-count">0</span></h2>
+            <button class="add-task-btn" onclick="addTask('todo')">➕ Add Task</button>
+            <div class="task-list"></div>
+        </div>
 
+        <!-- IN PROGRESS COLUMN -->
+        <div class="column" id="in-progress" ondrop="drop(event, 'in-progress')" ondragover="allowDrop(event)">
+            <h2>IN PROGRESS <span class="task-count">0</span></h2>
+            <button class="add-task-btn" onclick="addTask('in-progress')">➕ Add Task</button>
+            <div class="task-list"></div>
+        </div>
+
+        <!-- IN QA COLUMN -->
+        <div class="column" id="in-qa" ondrop="drop(event, 'in-qa')" ondragover="allowDrop(event)">
+            <h2>IN QA <span class="task-count">0</span></h2>
+            <button class="add-task-btn" onclick="addTask('in-qa')">➕ Add Task</button>
+            <div class="task-list"></div>
+        </div>
+
+        
+        
+
+        <!-- DONE COLUMN -->
+            <div class="column" id="done" ondrop="drop(event, 'done')" ondragover="allowDrop(event)">
+            <h2>DONE <span class="task-count">0</span></h2>
+            <button class="add-task-btn" onclick="addTask('done')">➕ Add Task</button>
+            <div class="task-list"></div>
+        </div>
+    </main>
+
+    <script src="../js/kanban.js"></script>
+</body>
 </html>
