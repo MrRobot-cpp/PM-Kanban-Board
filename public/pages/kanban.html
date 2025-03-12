@@ -10,54 +10,76 @@
 <body>
     <header>
         <h1>Board</h1>
-        <div class="users">
-            <div class="search-container">
-               
-            </div>
-            <input type="text" id="search-input" placeholder="Search tasks...">
-            </div>
-    
-        </div>
+        <input type="text" id="search-input" placeholder="Search tasks...">
     </header>
-    
-    
-       
-
-
-
 
     <main class="kanban-board">
         <!-- TO DO COLUMN -->
         <div class="column" id="todo" ondrop="drop(event, 'todo')" ondragover="allowDrop(event)">
             <h2>TO DO <span class="task-count">0</span></h2>
-            <button class="add-task-btn" onclick="addTask('todo')">➕ Add Task</button>
+            <button class="add-task-btn" onclick="openTaskModal('todo')">➕ Add Task</button>
             <div class="task-list"></div>
         </div>
 
         <!-- IN PROGRESS COLUMN -->
         <div class="column" id="in-progress" ondrop="drop(event, 'in-progress')" ondragover="allowDrop(event)">
             <h2>IN PROGRESS <span class="task-count">0</span></h2>
-            <button class="add-task-btn" onclick="addTask('in-progress')">➕ Add Task</button>
+            <button class="add-task-btn" onclick="openTaskModal('in-progress')">➕ Add Task</button>
             <div class="task-list"></div>
         </div>
 
-        <!-- IN QA COLUMN -->
+        <!-- TO BE REVIEWED COLUMN -->
         <div class="column" id="in-qa" ondrop="drop(event, 'in-qa')" ondragover="allowDrop(event)">
-            <h2>TO BE REVIEWD<span class="task-count">0</span></h2>
-            <button class="add-task-btn" onclick="addTask('in-qa')">➕ Add Task</button>
+            <h2>TO BE REVIEWED <span class="task-count">0</span></h2>
+            <button class="add-task-btn" onclick="openTaskModal('in-qa')">➕ Add Task</button>
             <div class="task-list"></div>
         </div>
-
-        
-        
 
         <!-- DONE COLUMN -->
-            <div class="column" id="done" ondrop="drop(event, 'done')" ondragover="allowDrop(event)">
+        <div class="column" id="done" ondrop="drop(event, 'done')" ondragover="allowDrop(event)">
             <h2>DONE <span class="task-count">0</span></h2>
-            <button class="add-task-btn" onclick="addTask('done')">➕ Add Task</button>
+            <button class="add-task-btn" onclick="openTaskModal('done')">➕ Add Task</button>
             <div class="task-list"></div>
         </div>
     </main>
+
+    <!-- TASK MODAL -->
+    <div id="taskModal" class="modal">
+        <div class="modal-content">
+            <h2>Add Task</h2>
+            <input type="text" id="task-title" placeholder="Task Title" required>
+            <select id="task-priority">
+                <option value="low">🟢 Low</option>
+                <option value="medium">🟡 Medium</option>
+                <option value="high">🔴 High</option>
+            </select>
+            <input type="date" id="task-date">
+            <select id="task-assignee">
+                <option value="user1">👤 User 1</option>
+                <option value="user2">👤 User 2</option>
+                <option value="user3">👤 User 3</option>
+            </select>
+            <button onclick="addTask()">Add Task</button>
+            <button onclick="closeTaskModal()">Cancel</button>
+        </div>
+    </div>
+
+    <!-- EDIT TASK MODAL -->
+    <div id="editTaskModal" class="modal">
+        <div class="modal-content">
+            <h2>Edit Task</h2>
+            <input type="text" id="edit-task-title" placeholder="Task Title">
+            <select id="edit-task-priority">
+                <option value="low">🟢 Low</option>
+                <option value="medium">🟡 Medium</option>
+                <option value="high">🔴 High</option>
+            </select>
+            <input type="date" id="edit-task-date">
+            <textarea id="edit-task-desc" placeholder="Task Description"></textarea>
+            <button onclick="saveTaskEdit()">Save Changes</button>
+            <button onclick="closeEditTaskModal()">Cancel</button>
+        </div>
+    </div>
 
     <script src="../js/kanban.js"></script>
 </body>

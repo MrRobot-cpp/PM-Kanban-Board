@@ -1,127 +1,134 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const addTaskBtns = document.querySelectorAll(".add-task-btn");
-    const searchInput = document.getElementById("search-input");
+    document.getElementById("search-input").addEventListener("input", searchTasks);
+    updateTaskCounts();
+});
 
-    addTaskBtns.forEach(button => {
-        button.addEventListener("click", () => addTask(button.closest(".column").id));
-    });
+function allowDrop(event) {
+    event.preventDefault();
+}
 
-    searchInput.addEventListener("input", searchTasks);
+function drag(event) {
+    event.dataTransfer.setData("text/plain", event.target.id);
+    event.target.classList.add("dragging");
+}
 
-    document.querySelectorAll(".task-list").forEach(list => {
-        list.addEventListener("dragover", allowDrop);
-        list.addEventListener("drop", function (event) {
-            drop(event, list.closest(".column").id);
-        });
-    });
+function drop(event, columnId) {
+    event.preventDefault();
+    const taskId = event.dataTransfer.getData("text/plain");
+    const taskElement = document.getElementById(taskId);
+    const taskList = document.getElementById(columnId).querySelector(".task-list");
 
-    function allowDrop(event) {
-        event.preventDefault();
-    }
-
-    function drag(event) {
-        event.dataTransfer.setData("text/plain", event.target.id);
-        event.target.classList.add("dragging");
-    }
-
-    function drop(event, columnId) {
-        event.preventDefault();
-        const taskId = event.dataTransfer.getData("text/plain");
-        const taskElement = document.getElementById(taskId);
-        const taskList = document.getElementById(columnId).querySelector(".task-list");
-
-        if (taskElement && taskList) {
-            taskList.appendChild(taskElement);
-            taskElement.classList.remove("dragging");
-            updateTaskCounts();
-        }
-    }
-
-    function addTask(columnId) {
-        const taskList = document.getElementById(columnId).querySelector(".task-list");
-        const taskId = "task-" + new Date().getTime();
-
-        const taskCard = document.createElement("div");
-        taskCard.className = "task-card";
-        taskCard.id = taskId;
-        taskCard.draggable = true;
-        taskCard.ondragstart = drag;
-        taskCard.ondragend = function () {
-            this.classList.remove("dragging");
-        };
-
-        // Task Title (Editable)
-        const taskPara = document.createElement("p");
-        taskPara.className = "task-title";
-        taskPara.textContent = "New Task";
-        taskPara.contentEditable = true;
-        taskPara.addEventListener("blur", () => {
-            if (taskPara.textContent.trim() === "") {
-                taskPara.textContent = "New Task";
-            }
-        });
-
-        // Priority Selector
-        const priority = document.createElement("select");
-        priority.className = "task-priority";
-        priority.innerHTML = `
-            <option value="low">🟢 Low</option>
-            <option value="medium">🟡 Medium</option>
-            <option value="high">🔴 High</option>
-        `;
-        priority.onchange = () => updateTaskVisual(taskCard, priority.value);
-
-        // Due Date Picker
-        const dueDate = document.createElement("input");
-        dueDate.type = "date";
-        dueDate.className = "task-date";
-
-        // Assignee Selector (User Avatars)
-        const assignee = document.createElement("select");
-        assignee.className = "task-assignee";
-        assignee.innerHTML = `
-            <option value="user1">👤 User 1</option>
-            <option value="user2">👤 User 2</option>
-            <option value="user3">👤 User 3</option>
-        `;
-
-        // Delete Button
-        const deleteBtn = document.createElement("button");
-        deleteBtn.className = "delete-btn";
-        deleteBtn.innerHTML = "❌";
-        deleteBtn.onclick = () => {
-            taskCard.remove();
-            updateTaskCounts();
-        };
-
-        taskCard.appendChild(taskPara);
-        taskCard.appendChild(priority);
-        taskCard.appendChild(dueDate);
-        taskCard.appendChild(assignee);
-        taskCard.appendChild(deleteBtn);
-        taskList.appendChild(taskCard);
-
-        updateTaskVisual(taskCard, priority.value);
+    if (taskElement && taskList) {
+        taskList.appendChild(taskElement);
+        taskElement.classList.remove("dragging");
         updateTaskCounts();
     }
+}
 
-    function updateTaskVisual(taskCard, priority) {
-        taskCard.classList.remove("priority-low", "priority-medium", "priority-high");
-        taskCard.classList.add(`priority-${priority}`);
-    }
+// Open Task Modal
+function openTaskModal(column) {
+    document.getElementById("taskModal").style.display = "block";
+    document.getElementById("taskModal").dataset.column = column;
+}
 
-    function updateTaskCounts() {
-        document.querySelectorAll(".column").forEach(column => {
-            const taskCount = column.querySelector(".task-list").children.length;
-            column.querySelector(".task-count").textContent = taskCount;
-        });
-    }
+// Close Task Modal
+function closeTaskModal() {
+    document.getElementById("taskModal").style.display = "none";
+}
 
-    function searchTasks() {
-        const searchText = searchInput.value.toLowerCase();
-        document.querySelectorAll(".task-card").forEach(task => {
-            const taskText = task.querySelector(".task-title").textContent.toLowerCase();
-            task.style.display = taskText.includes(searchText) ? "block" : "none";
-        });
-    }
-});
+// Add Task
+function addTask() {
+    const columnId = document.getElementById("taskModal").dataset.column;
+    const taskList = document.getElementById(columnId).querySelector(".task-list");
+
+    const taskTitle = document.getElementById("task-title").value || "New Task";
+    const priority = document.getElementById("task-priority").value;
+    const dueDate = document.getElementById("task-date").value || "No Due Date";
+    const assignee = document.getElementById("task-assignee").value;
+
+    const taskId = "task-" + new Date().getTime();
+
+    const taskCard = document.createElement("div");
+    taskCard.className = `task-card priority-${priority}`;
+    taskCard.id = taskId;
+    taskCard.draggable = true;
+    taskCard.ondragstart = drag;
+
+    taskCard.innerHTML = `
+        <p class="task-title">${taskTitle}</p>
+        <p class="task-date">${dueDate}</p>
+        <p class="task-assignee">${assignee}</p>
+        <p class="task-desc">No Description</p>
+        <button class="edit-btn" onclick="openEditTaskModal('${taskId}')">✏️ Edit</button>
+        <button class="delete-btn" onclick="removeTask('${taskId}')">❌</button>
+    `;
+
+    taskList.appendChild(taskCard);
+    updateTaskCounts();
+    closeTaskModal();
+}
+
+// Remove Task
+function removeTask(taskId) {
+    document.getElementById(taskId).remove();
+    updateTaskCounts();
+}
+
+// Update Task Counts
+function updateTaskCounts() {
+    document.querySelectorAll(".column").forEach(column => {
+        const taskCount = column.querySelector(".task-list").children.length;
+        column.querySelector(".task-count").textContent = taskCount;
+    });
+}
+
+// Open Edit Task Modal
+function openEditTaskModal(taskId) {
+    const taskElement = document.getElementById(taskId);
+
+    document.getElementById("edit-task-title").value = taskElement.querySelector(".task-title").textContent;
+    document.getElementById("edit-task-date").value = taskElement.querySelector(".task-date").textContent;
+    document.getElementById("edit-task-desc").value = taskElement.querySelector(".task-desc").textContent;
+    document.getElementById("edit-task-priority").value = getPriorityValue(taskElement);
+    document.getElementById("editTaskModal").dataset.taskId = taskId;
+    document.getElementById("editTaskModal").style.display = "block";
+}
+
+// Get Priority Value from Class Name
+function getPriorityValue(taskElement) {
+    if (taskElement.classList.contains("priority-high")) return "high";
+    if (taskElement.classList.contains("priority-medium")) return "medium";
+    return "low";
+}
+
+// Save Task Edit
+function saveTaskEdit() {
+    const taskId = document.getElementById("editTaskModal").dataset.taskId;
+    const taskElement = document.getElementById(taskId);
+
+    taskElement.querySelector(".task-title").textContent = document.getElementById("edit-task-title").value;
+    taskElement.querySelector(".task-date").textContent = document.getElementById("edit-task-date").value;
+    taskElement.querySelector(".task-desc").textContent = document.getElementById("edit-task-desc").value;
+
+    // Update priority class
+    const newPriority = document.getElementById("edit-task-priority").value;
+    taskElement.classList.remove("priority-low", "priority-medium", "priority-high");
+    taskElement.classList.add(`priority-${newPriority}`);
+
+    closeEditTaskModal();
+}
+
+// Close Edit Task Modal
+function closeEditTaskModal() {
+    document.getElementById("editTaskModal").style.display = "none";
+}
+
+// ✅ Fixed Search (Only Searches Titles)
+
+function searchTasks() {
+    const searchText = document.getElementById("search-input").value.toLowerCase();
+    document.querySelectorAll(".task-card").forEach(task => {
+        const title = task.querySelector(".task-title").textContent.toLowerCase();
+        task.style.display = title.startsWith(searchText) ? "block" : "none";
+    });
+}
