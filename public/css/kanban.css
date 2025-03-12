@@ -4,6 +4,7 @@ body {
     background-color: #fdfdfd;
     margin: 0;
     padding: 0;
+
 }
 
 /* Header */
@@ -11,9 +12,12 @@ header {
     display: flex;
     justify-content: space-between;
     padding: 20px;
-    background: blanchedalmond;
+    background-color: #b2dee6;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     align-items: center;
+}
+.header h1{
+    color: #0B3954;
 }
 
 /* User Avatars */
@@ -37,16 +41,19 @@ header {
 
 /* Kanban Board */
 .kanban-board {
+    margin-top: 30px;
     display: flex;
-    justify-content: space-around;
-    padding: 20px;
-    gap: 20px;
+    gap: 30px;
+    justify-content: center;
+    background-color:  #ffffff;
+
+   border-radius: 10px;
 }
 
 /* Columns */
 .column {
-    width: 260px;
-    background: white;
+    width: 300px;
+    background:  #D4BEBE;
     border-radius: 12px;
     padding: 20px;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
@@ -77,7 +84,7 @@ header {
 
 /* Task Cards */
 .task-card {
-    background: white;
+    background: rgb(219, 183, 183);
     border-radius: 8px;
     padding: 12px;
     margin-bottom: 10px;
@@ -87,6 +94,10 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+#search-input{
+    padding: 10px;
+    border-radius: 10px;
 }
 
 .task-card:hover {
@@ -121,6 +132,12 @@ header {
     border-radius: 5px;
     border: 1px solid #ccc;
     font-size: 14px;
+}
+.add-task-btn{
+background-color: #0B3954;
+color: #D4BEBE;
+padding:10px;
+border-radius: 10px;
 }
 
 /* Delete Button */

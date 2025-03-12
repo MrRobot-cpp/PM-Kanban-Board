@@ -13,19 +13,19 @@
         <div class="users">
             <div class="search-container">
                
-
-    <span>+3</span>
+            </div>
+            <input type="text" id="search-input" placeholder="Search tasks...">
+            </div>
+    
         </div>
     </header>
     
-    <div class="search-container">
+    
        
 
-</div>
-<input type="text" id="search-input" placeholder="Search tasks...">
-</div>
-    <span>+3</span>
-</div>
+
+
+
     <main class="kanban-board">
         <!-- TO DO COLUMN -->
         <div class="column" id="todo" ondrop="drop(event, 'todo')" ondragover="allowDrop(event)">
@@ -43,7 +43,7 @@
 
         <!-- IN QA COLUMN -->
         <div class="column" id="in-qa" ondrop="drop(event, 'in-qa')" ondragover="allowDrop(event)">
-            <h2>IN QA <span class="task-count">0</span></h2>
+            <h2>TO BE REVIEWD<span class="task-count">0</span></h2>
             <button class="add-task-btn" onclick="addTask('in-qa')">➕ Add Task</button>
             <div class="task-list"></div>
         </div>
