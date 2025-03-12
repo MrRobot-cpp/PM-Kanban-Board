@@ -25,17 +25,17 @@
     left: 0;
     width: 50%;
     height: 50%;
-    background: linear-gradient(135deg, #7b68ee 0%, #9370db 100%);
+    background: linear-gradient(135deg, #0B3954 0%, #b4dbd3 100%);
     border-radius: 0 100% 0 0;
   }
-
+  
   .wave-top-right {
     position: absolute;
     top: 0;
     right: 0;
     width: 60%;
     height: 60%;
-    background: linear-gradient(135deg, #ff6bd5 0%, #d56bf3 100%);
+    background: linear-gradient(135deg, #b4dbd3 0%, #0B3954 100%);
     border-radius: 0 0 0 100%;
   }
 
@@ -55,7 +55,7 @@
     width: 36px;
     height: 36px;
     margin-right: 8px;
-    background: linear-gradient(135deg, #ff6bd5 0%, #8a5cf5 100%);
+    background: linear-gradient(135deg, #0B3954 0%, #b4dbd3 100%);
     border-radius: 8px;
     position: relative;
   }
@@ -74,12 +74,12 @@
   .logo-text {
     font-weight: 800;
     font-size: 24px;
-    color: #222;
+    color: #0B3954;
   }
 
   .tagline {
     font-size: 14px;
-    color: #444;
+    color: #0B3954;
     margin-top: -2px;
   }
 
@@ -91,12 +91,12 @@
   .header-text {
     margin-right: 16px;
     font-size: 14px;
-    color: #444;
+    color:#D4BEBE;
   }
 
   .login-btn {
-    background-color: #6c5ce7;
-    color: white;
+    background-color: #D4BEBE;
+    color: #0B3954;
     padding: 12px 24px;
     border-radius: 6px;
     font-weight: 600;
@@ -104,7 +104,12 @@
     cursor: pointer;
     font-size: 14px;
   }
+  .login-btn:hover
+  {
+  background-color: #0B3954;
+    color: #D4BEBE;
 
+  }
   .container {
     max-width: 503px;
     margin: 19px auto;
@@ -224,8 +229,8 @@
 
   .signup-btn {
     width: 100%;
-    background-color: #6c5ce7;
-    color: white;
+    background-color: #D4BEBE;
+    color: #0B3954;
     padding: 14px;
     border-radius: 6px;
     font-weight: 600;
@@ -233,6 +238,12 @@
     border: none;
     cursor: pointer;
     margin: -3px 0;
+  }
+  .signup-btn:hover
+  {
+  background-color: #0B3954;
+    color: #D4BEBE;
+
   }
 
   .sso-link {
