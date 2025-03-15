@@ -1,0 +1,130 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body, html {
+    height: 100%;
+    overflow: hidden; /* Prevent scrolling */
+}
+
+.main-container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+.sidebar-container {
+    width: 250px;
+    color: white;
+    position: fixed;
+    left: 0;
+    height: 100vh;
+}
+
+.dashboard-container {
+    margin-left: 250px;
+    flex-grow: 1;
+    padding: 10px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Prevent scrolling */
+}
+
+/* Summary Cards */
+.summary-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 10px;
+    height: 12%;
+}
+
+.summary-card {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 8px;
+    background: #D4BEBE;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    font-size: 12px; /* Make text smaller */
+}
+
+.summary-card .icon {
+    font-size: 18px; /* Reduce icon size */
+}
+
+/* Dashboard Sections */
+.dashboard-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Ensures equal width */
+    align-items: stretch; /* Ensures equal height */
+
+}
+
+
+
+/* Dashboard Sections */
+.dashboard-section {
+    border: 1px solid #ddd;
+    border-radius: 6px; /* Reduce corner radius */
+    padding: 6px; /* Reduce padding */
+    background: rgba(238, 238, 238, 0.74);
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+    font-size: 10px; /* Reduce text size */
+    max-width: 800px; /* Limit the section width */
+    margin-bottom: 20px; /* Adds space between sections */
+}
+
+/* Chart Wrapper */
+.chart-wrapper {
+    width: 100%;
+    max-width: 400px; /* Reduce max width */
+    height: 300px; /* Reduce height */
+    margin: auto; /* Center chart */
+}
+
+
+.chart-center-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+
+.activity-item {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    font-size: 12px; /* Make text smaller */
+}
+
+.activity-item .avatar {
+    width: 25px;
+    height: 25px;
+    background: #007bff;
+    color: white;
+    text-align: center;
+    border-radius: 50%;
+    line-height: 25px;
+    margin-right: 5px;
+}
+
+.dashboard-section canvas {
+    max-width: 100%;
+    height: auto;
+}
+

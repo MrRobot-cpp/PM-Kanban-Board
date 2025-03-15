@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="main-container">
+    <!-- Sidebar -->
+    <div class="sidebar-container" id="sidebar"></div>
+
+    <!-- Main Dashboard Content -->
+    <div class="dashboard-container">
+        <!-- Top Summary Cards -->
+        <div class="summary-cards">
+            <div class="summary-card">
+                <span class="icon">✅</span>
+                <div>
+                    <strong>15 completed</strong>
+                    <p>in the last 7 days</p>
+                </div>
+            </div>
+            <div class="summary-card">
+                <span class="icon">📌</span>
+                <div>
+                    <strong>29 updated</strong>
+                    <p>in the last 7 days</p>
+                </div>
+            </div>
+            <div class="summary-card">
+                <span class="icon">📂</span>
+                <div>
+                    <strong>20 created</strong>
+                    <p>in the last 7 days</p>
+                </div>
+            </div>
+            <div class="summary-card">
+                <span class="icon">📅</span>
+                <div>
+                    <strong>0 due soon</strong>
+                    <p>in the next 7 days</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Status Overview & Recent Activity -->
+        <div class="dashboard-content">
+            <div class="dashboard-section">
+                <h3>Status Overview</h3>
+                <p>Get a snapshot of the status of your issues. <a href="#">View all issues</a></p>
+                <div class="chart-wrapper">
+                    <canvas id="statusChart"></canvas>
+                </div>
+            </div>
+
+            <div class="dashboard-section">
+                <h3>Recent Activity</h3>
+                <p>Stay up to date with what's happening across the project.</p>
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <span class="avatar">SA</span>
+                        <p><strong>Shady Yasser Adel</strong> updated field "Rank" on <a href="#">KBPM-34: Project Libre</a></p>
+                        <small>about 10 hours ago</small>
+                    </div>
+                    <div class="activity-item">
+                        <span class="avatar">SA</span>
+                        <p><strong>Shady Yasser Adel</strong> updated field "Rank" on <a href="#">KBPM-32: Project Charter</a></p>
+                        <small>about 10 hours ago</small>
+                    </div>
+                    <div class="activity-item">
+                        <span class="avatar">SA</span>
+                        <p><strong>Shady Yasser Adel</strong> updated field "Rank" on <a href="#">KBPM-34: Project Libre</a></p>
+                        <small>about 10 hours ago</small>
+                    </div>
+                      <div class="activity-item">
+                        <span class="avatar">SA</span>
+                        <p><strong>Shady Yasser Adel</strong> updated field "Rank" on <a href="#">KBPM-34: Project Libre</a></p>
+                        <small>about 10 hours ago</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Priority Breakdown & Types of Work -->
+        <div class="dashboard-content">
+            <div class="dashboard-section">
+                <h3>Priority Breakdown</h3>
+                <p>See how work is prioritized. <a href="#">See what your team is focusing on</a></p>
+                <canvas id="priorityChart"></canvas>
+            </div>
+
+            <div class="dashboard-section">
+                <h3>Types of Work</h3>
+                <p>Get a breakdown of issues by their types. <a href="#">View all items</a></p>
+                <canvas id="workChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        fetch("sidebar.html")
+        .then(response => response.text())
+        .then(data => document.getElementById("sidebar").innerHTML = data)
+        .catch(error => console.error("Error loading sidebar:", error));
+
+        // Chart.js Configuration
+        const ctx1 = document.getElementById('statusChart').getContext('2d');
+        const ctx2 = document.getElementById('priorityChart').getContext('2d');
+        const ctx3 = document.getElementById('workChart').getContext('2d');
+
+        new Chart(ctx1, {
+            type: 'doughnut',
+            data: {
+                labels: ['To Do', 'In Progress', 'Done'],
+                datasets: [{
+                    data: [10, 4, 15],
+                    backgroundColor: ['#e57373', '#ffb74d', '#81c784']
+                }]
+            },
+            options: {
+                cutout: '70%',
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'right'
+                    }
+                }
+            }
+        });
+
+        new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: ['Highest', 'High', 'Medium', 'Low', 'Lowest'],
+                datasets: [{
+                    data: [2, 5, 12, 3, 1],
+                    backgroundColor: '#90caf9'
+                }]
+            }
+        });
+
+        new Chart(ctx3, {
+            type: 'bar',
+            data: {
+                labels: ['Task', 'Epic', 'Story', 'Bug', 'Subtask'],
+                datasets: [{
+                    data: [57, 36, 10, 5, 8],
+                    backgroundColor: ['#42a5f5', '#ab47bc', '#ffca28', '#ef5350', '#66bb6a']
+                }]
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
