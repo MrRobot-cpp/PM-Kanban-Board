@@ -74,7 +74,7 @@ header {
 .logo-text {
   font-weight: 800;
   font-size: 24px;
-  color:#0B3954;
+  color: #0B3954;
 }
 
 .tagline {
@@ -91,7 +91,7 @@ header {
 .header-text {
   margin-right: 16px;
   font-size: 14px;
-  color:#D4BEBE;
+  color: #D4BEBE;
 }
 
 .login-btn {
@@ -251,4 +251,78 @@ input[type="password"] {
 .help-text {
   font-size: 12px;
   margin-top: 4px;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header-cta {
+    margin-top: 10px;
+  }
+
+  .container {
+    padding: 20px;
+  }
+
+  .signup-btn, .login-btn {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  .form-group label {
+    font-size: 12px;
+  }
+
+  input[type="text"], input[type="email"], input[type="password"] {
+    padding: 10px 14px 10px 36px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    padding: 10px 20px;
+  }
+
+  .logo-text {
+    font-size: 20px;
+  }
+
+  .tagline {
+    font-size: 12px;
+  }
+
+  .header-text {
+    font-size: 12px;
+  }
+
+  .signup-btn, .login-btn {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  .container {
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  .form-group label {
+    font-size: 10px;
+  }
+
+  input[type="text"], input[type="email"], input[type="password"] {
+    padding: 8px 12px 8px 32px;
+    font-size: 10px;
+  }
 }

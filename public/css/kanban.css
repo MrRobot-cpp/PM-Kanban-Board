@@ -59,18 +59,33 @@ header input {
 /* Kanban Board Layout */
 .kanban-board {
     display: flex;
-    justify-content: space-around;
+    flex-wrap: wrap;
+    justify-content: center;
     padding: 20px;
-    gap: 30px;
+    gap: 20px;
 }
 
 /* Columns */
 .column {
-    flex: 20%;
+    flex: 1;
+    min-width: 250px;
+    max-width: 400px;
     background: var(--column-bg);
     border-radius: var(--border-radius);
-    padding: 33px;
+    padding: 20px;
     box-shadow: 0px 4px 6px var(--modal-shadow);
+}
+
+/* Responsive Kanban Board */
+@media (max-width: 768px) {
+    .kanban-board {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .column {
+        width: 90%;
+    }
 }
 
 /* Add Task Button */
@@ -78,10 +93,11 @@ header input {
     background: var(--btn-primary);
     color: var(--column-bg);
     border: none;
-    padding: 8px;
+    padding: 10px;
     border-radius: var(--border-radius);
     cursor: pointer;
     width: 100%;
+    font-size: 14px;
 }
 
 .add-task-btn:hover {
@@ -97,32 +113,15 @@ header input {
 /* Task Cards */
 .task-card {
     background: var(--task-bg);
-    padding: 10px;
+    padding: 12px;
     border-radius: var(--border-radius);
     margin-bottom: 10px;
     box-shadow: 0px 2px 4px var(--modal-shadow);
     cursor: grab;
+    font-size: 14px;
 }
 
-.task-card p {
-    margin: 5px 0;
-}
-
-.task-card .delete-btn {
-    background: var(--btn-delete);
-    color: white;
-    border: none;
-    padding: 5px;
-    border-radius: 3px;
-    cursor: pointer;
-}
-
-/* Dragging Effect */
-.dragging {
-    opacity: 0.5;
-}
-
-/* ✅ Priority Styles (Restored) */
+/* Priority Indicators */
 .priority-low {
     border-left: 5px solid green;
 }
@@ -135,14 +134,30 @@ header input {
     border-left: 5px solid red;
 }
 
-/* ✅ MODAL STYLES (UNCHANGED) */
+/* Task Delete Button */
+.task-card .delete-btn {
+    background: var(--btn-delete);
+    color: white;
+    border: none;
+    padding: 6px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+/* Dragging Effect */
+.dragging {
+    opacity: 0.5;
+}
+
+/* Modal Styling */
 .modal {
     display: none;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 400px;
+    width: 90%;
+    max-width: 400px;
     background: var(--modal-bg);
     padding: 20px;
     border-radius: 8px;
@@ -151,26 +166,12 @@ header input {
     animation: fadeIn 0.2s ease-in-out;
 }
 
-/* MODAL CONTENT */
-.modal-content {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-/* HEADER */
-.modal h2 {
-    font-size: 18px;
-    margin-bottom: 10px;
-    color: var(--text-color);
-}
-
-/* INPUT FIELDS & SELECT DROPDOWN */
+/* Modal Input Fields */
 .modal input, 
 .modal select, 
 .modal textarea {
     width: 100%;
-    padding: 8px;
+    padding: 10px;
     border-radius: var(--border-radius);
     border: 1px solid var(--column-bg);
     font-size: 14px;
@@ -178,13 +179,7 @@ header input {
     color: var(--text-color);
 }
 
-/* DESCRIPTION TEXTAREA */
-.modal textarea {
-    height: 60px;
-    resize: none;
-}
-
-/* BUTTONS */
+/* Modal Buttons */
 .modal button {
     padding: 10px;
     font-size: 14px;
@@ -195,39 +190,15 @@ header input {
     font-weight: 500;
 }
 
-/* PRIMARY BUTTON */
-.modal button:first-of-type {
-    background: var(--btn-primary);
-    color: white;
-}
-
-.modal button:first-of-type:hover {
-    background: var(--btn-primary-hover);
-}
-
-/* CANCEL BUTTON */
-.modal button:last-of-type {
-    background: #d4d4d4;
-    color: #333;
-}
-
-.modal button:last-of-type:hover {
-    background: #bfbfbf;
-}
-
-/* FADE-IN EFFECT */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translate(-50%, -55%);
-    }
-    to {
-        opacity: 1;
-        transform: translate(-50%, -50%);
+/* Responsive Modal */
+@media (max-width: 480px) {
+    .modal {
+        width: 95%;
+        max-width: 350px;
     }
 }
 
-/* 🌙 Dark Mode Toggle Button */
+/* Dark Mode Toggle */
 .theme-toggle {
     background: transparent;
     border: none;
@@ -240,14 +211,12 @@ header input {
     transform: scale(1.1);
 }
 
-/* Toggle Icon */
 #theme-icon {
     width: 32px;
     height: 32px;
     transition: filter 0.3s ease;
 }
 
-/* Dark Mode Icon Effect */
 .dark-mode #theme-icon {
     filter: invert(1);
 }
