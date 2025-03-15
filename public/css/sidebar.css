@@ -10,9 +10,11 @@
 .sidebar {
     width: 250px;
     height: 100vh;
-    background-color:   #b2dee6;
+    background-color: #b2dee6;
     padding: 20px;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
 }
 
 /* MASA Logo */
@@ -47,19 +49,18 @@
 .logo-text {
     font-weight: 800;
     font-size: 20px;
-    color:#0B3954;
+    color: #0B3954;
 }
 
 .tagline {
     font-size: 12px;
-    color:#0B3954;
+    color: #0B3954;
 }
 
 /* Section Headers */
 h3 {
     font-size: 14px;
     color: #0B3954;
-
     margin-top: 20px;
     margin-bottom: 5px;
 }
@@ -87,39 +88,53 @@ h3 {
 .menu li i {
     font-size: 16px;
     margin-right: 10px;
-    color:#0B3954;
-
+    color: #0B3954;
 }
+
 .menu li span {
     font-size: 14px;
-    color:  #0B3954;
+    color: #0B3954;
 }
 
 /* Active Item */
 .menu .active {
     background: #D4BEBE; /* Soft Beige */
     font-weight: bold;
-    color:  white;
+    color: white;
 }
-
 
 .menu .active i,
 .menu .active span {
     color: white;
 }
 
-
-/* "New" Badge */
-.new-badge {
-    color: purple;
-    font-size: 10px;
+/* Bottom Spacer */
+.spacer {
+    flex-grow: 1;
 }
 
-/* Bottom Text */
-.bottom-text {
-    margin-top: 20px;
-    font-size: 12px;
-    color: #0B3954;
+/* Sign Out Button */
+.signout-btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: none;
+    background-color: #0B3954;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: 0.3s;
 }
-    
 
+.signout-btn i {
+    margin-left: 10px;
+}
+
+.signout-btn:hover {
+    background-color: #D4BEBE; /* Darker Red */
+color: #0B3954;
+}
