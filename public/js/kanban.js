@@ -129,9 +129,10 @@ function searchTasks() {
     const searchText = document.getElementById("search-input").value.toLowerCase();
     document.querySelectorAll(".task-card").forEach(task => {
         const title = task.querySelector(".task-title").textContent.toLowerCase();
-        task.style.display = title.startsWith(searchText) ? "block" : "none";
+        task.style.display = title.includes(searchText) ? "block" : "none"; // Match anywhere in the title
     });
 }
+
 // Check System Preference and Apply Mode
 document.addEventListener("DOMContentLoaded", () => {
     if (window.matchMedia("(prefers-color-scheme: dark)").matches) {

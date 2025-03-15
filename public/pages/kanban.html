@@ -8,44 +8,45 @@
     <link rel="stylesheet" href="../css/kanban.css">
 </head>
 <body>
-    <header>
-        <h1>Board</h1>
-        <button id="theme-toggle" class="theme-toggle">
-            <img src="../assets/Photos/night-mode.png"Toggle Theme" id="theme-icon">
-        </button>
-        
-        <input type="text" id="search-input" placeholder="Search tasks...">
-    </header>
+    <div class="main-container">
+        <!-- Sidebar -->
+        <div class="sidebar-container" id="sidebar"></div>
 
-    <main class="kanban-board">
-        <!-- TO DO COLUMN -->
-        <div class="column" id="todo" ondrop="drop(event, 'todo')" ondragover="allowDrop(event)">
-            <h2>TO DO <span class="task-count">0</span></h2>
-            <button class="add-task-btn" onclick="openTaskModal('todo')">➕ Add Task</button>
-            <div class="task-list"></div>
-        </div>
+        <!-- Kanban Board Content -->
+        <div class="kanban-content">
+            <input type="text" id="search-input" placeholder="Search tasks...">
 
-        <!-- IN PROGRESS COLUMN -->
-        <div class="column" id="in-progress" ondrop="drop(event, 'in-progress')" ondragover="allowDrop(event)">
-            <h2>IN PROGRESS <span class="task-count">0</span></h2>
-            <button class="add-task-btn" onclick="openTaskModal('in-progress')">➕ Add Task</button>
-            <div class="task-list"></div>
-        </div>
+            <main class="kanban-board">
+                <!-- TO DO COLUMN -->
+                <div class="column" id="todo" ondrop="drop(event, 'todo')" ondragover="allowDrop(event)">
+                    <h2>TO DO <span class="task-count">0</span></h2>
+                    <button class="add-task-btn" onclick="openTaskModal('todo')">➕ Add Task</button>
+                    <div class="task-list"></div>
+                </div>
 
-        <!-- TO BE REVIEWED COLUMN -->
-        <div class="column" id="in-qa" ondrop="drop(event, 'in-qa')" ondragover="allowDrop(event)">
-            <h2>TO BE REVIEWED <span class="task-count">0</span></h2>
-            <button class="add-task-btn" onclick="openTaskModal('in-qa')">➕ Add Task</button>
-            <div class="task-list"></div>
-        </div>
+                <!-- IN PROGRESS COLUMN -->
+                <div class="column" id="in-progress" ondrop="drop(event, 'in-progress')" ondragover="allowDrop(event)">
+                    <h2>IN PROGRESS <span class="task-count">0</span></h2>
+                    <button class="add-task-btn" onclick="openTaskModal('in-progress')">➕ Add Task</button>
+                    <div class="task-list"></div>
+                </div>
 
-        <!-- DONE COLUMN -->
-        <div class="column" id="done" ondrop="drop(event, 'done')" ondragover="allowDrop(event)">
-            <h2>DONE <span class="task-count">0</span></h2>
-            <button class="add-task-btn" onclick="openTaskModal('done')">➕ Add Task</button>
-            <div class="task-list"></div>
+                <!-- TO BE REVIEWED COLUMN -->
+                <div class="column" id="in-qa" ondrop="drop(event, 'in-qa')" ondragover="allowDrop(event)">
+                    <h2>TO BE REVIEWED <span class="task-count">0</span></h2>
+                    <button class="add-task-btn" onclick="openTaskModal('in-qa')">➕ Add Task</button>
+                    <div class="task-list"></div>
+                </div>
+
+                <!-- DONE COLUMN -->
+                <div class="column" id="done" ondrop="drop(event, 'done')" ondragover="allowDrop(event)">
+                    <h2>DONE <span class="task-count">0</span></h2>
+                    <button class="add-task-btn" onclick="openTaskModal('done')">➕ Add Task</button>
+                    <div class="task-list"></div>
+                </div>
+            </main>
         </div>
-    </main>
+    </div>
 
     <!-- TASK MODAL -->
     <div id="taskModal" class="modal">
@@ -85,6 +86,24 @@
         </div>
     </div>
 
-    <script src="../js/kanban.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch("sidebar.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("sidebar").innerHTML = data;
+
+                // ✅ Now load kanban.js AFTER sidebar is added
+                let script = document.createElement("script");
+                script.src = "../js/kanban.js";
+                document.body.appendChild(script);
+            })
+            .catch(error => console.error("Error loading sidebar:", error));
+        });
+        
+    </script>
+     <script src="../js/kanban.js"></script>
+    
 </body>
+
 </html>

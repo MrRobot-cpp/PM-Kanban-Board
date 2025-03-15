@@ -36,33 +36,30 @@ body {
     color: var(--text-color);
     transition: background 0.3s ease, color 0.3s ease;
 }
+.sidebar-container {
+    width: 250px;
+    color: white;
+    position: fixed;
+    left: 0;
+    height: 100vh;
 
-/* Header */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px;
-    background: var(--header-bg);
-    color: var(--text-color);
 }
-
-/* Search Input */
-header input {
-    padding: 8px;
-    border-radius: var(--border-radius);
-    border: none;
-    background: var(--task-bg);
-    color: var(--text-color);
-}
-
 /* Kanban Board Layout */
 .kanban-board {
+    margin-left: 13%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     padding: 20px;
     gap: 20px;
+}
+#search-input{
+    margin-left: 270px;
+    margin-top: 10px;
+    background-color:  #D4BEBE;
+    padding: 10px;
+    border-radius: 10px ;
+    border: 1px solid  #D4BEBE;
 }
 
 /* Columns */
@@ -106,10 +103,11 @@ header input {
 
 /* Task List */
 .task-list {
-    margin-top: 10px;
+    margin-top: 20px;
     min-height: 50px;
 }
 
+/* Task Cards */
 /* Task Cards */
 .task-card {
     background: var(--task-bg);
@@ -119,7 +117,11 @@ header input {
     box-shadow: 0px 2px 4px var(--modal-shadow);
     cursor: grab;
     font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Adds space between elements inside the card */
 }
+
 
 /* Priority Indicators */
 .priority-low {
@@ -136,14 +138,21 @@ header input {
 
 /* Task Delete Button */
 .task-card .delete-btn {
-    background: var(--btn-delete);
+    background: crimson;
     color: white;
     border: none;
     padding: 6px;
     border-radius: 3px;
     cursor: pointer;
 }
-
+.task-card .edit-btn {
+    background-color:chocolate;
+    color: white;
+    border: none;
+    padding: 6px;
+    border-radius: 3px;
+    cursor: pointer;
+}
 /* Dragging Effect */
 .dragging {
     opacity: 0.5;
