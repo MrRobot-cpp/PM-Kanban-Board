@@ -1,3 +1,4 @@
+/* Reset and Base Styling */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -10,11 +11,12 @@ body, html {
     overflow: hidden; /* Prevent scrolling */
 }
 
+/* Main Layout */
 .main-container {
     display: flex;
     height: 100vh;
     width: 100vw;
-    overflow: hidden;
+    overflow: hidden; /* Prevent scrolling */
 }
 
 .sidebar-container {
@@ -23,6 +25,8 @@ body, html {
     position: fixed;
     left: 0;
     height: 100vh;
+    background: #333; /* Add background for contrast */
+    overflow-y: auto;
 }
 
 .dashboard-container {
@@ -32,7 +36,7 @@ body, html {
     background-color: #ffffff;
     display: flex;
     flex-direction: column;
-    overflow: hidden; /* Prevent scrolling */
+    overflow-y: auto; /* Allow vertical scroll if needed */
 }
 
 /* Summary Cards */
@@ -53,43 +57,42 @@ body, html {
     padding: 8px;
     background: #D4BEBE;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
-    font-size: 12px; /* Make text smaller */
+    font-size: 12px;
 }
 
 .summary-card .icon {
-    font-size: 18px; /* Reduce icon size */
+    font-size: 18px;
 }
 
 /* Dashboard Sections */
 .dashboard-content {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Ensures equal width */
-    align-items: stretch; /* Ensures equal height */
-
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: stretch;
 }
 
-
-
-/* Dashboard Sections */
+/* Each Section */
 .dashboard-section {
     border: 1px solid #ddd;
-    border-radius: 6px; /* Reduce corner radius */
-    padding: 6px; /* Reduce padding */
+    border-radius: 6px;
+    padding: 6px;
     background: rgba(238, 238, 238, 0.74);
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
-    font-size: 10px; /* Reduce text size */
-    max-width: 800px; /* Limit the section width */
-    margin-bottom: 20px; /* Adds space between sections */
+    font-size: 10px;
+    max-width: 800px;
+    margin: 0 auto 20px;
+    position: relative;
 }
 
 /* Chart Wrapper */
 .chart-wrapper {
     width: 100%;
-    max-width: 400px; /* Reduce max width */
-    height: 300px; /* Reduce height */
-    margin: auto; /* Center chart */
+    max-width: 400px;
+    height: 300px;
+    margin: auto;
+    position: relative;
 }
-
 
 .chart-center-text {
     position: absolute;
@@ -100,8 +103,7 @@ body, html {
     font-weight: bold;
 }
 
-
-
+/* Activity Items */
 .activity-item {
     display: flex;
     align-items: center;
@@ -109,7 +111,7 @@ body, html {
     padding: 5px;
     border-radius: 5px;
     margin-bottom: 5px;
-    font-size: 12px; /* Make text smaller */
+    font-size: 12px;
 }
 
 .activity-item .avatar {
@@ -128,3 +130,84 @@ body, html {
     height: auto;
 }
 
+/* ========== RESPONSIVE DESIGN ========== */
+
+/* Large Tablets / Small Desktops */
+@media (max-width: 1200px) {
+  .summary-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .dashboard-content {
+    grid-template-columns: 1fr 1fr;
+  }
+  .sidebar-container {
+    width: 220px;
+  }
+  .dashboard-container {
+    margin-left: 220px;
+  }
+}
+
+/* Tablets and Landscape Phones */
+@media (max-width: 768px) {
+  /* Collapse sidebar to top nav */
+  .sidebar-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding: 10px;
+  }
+  .dashboard-container {
+    margin-left: 0;
+    padding-top: 10px;
+  }
+
+  /* Single column for summary cards */
+  .summary-cards {
+    grid-template-columns: repeat(2, 1fr);
+    height: auto;
+  }
+
+  /* Stack dashboard sections */
+  .dashboard-content {
+    display: block;
+  }
+  .dashboard-section {
+    max-width: 100%;
+    margin: 0 0 20px;
+  }
+}
+
+/* Mobile Portrait */
+@media (max-width: 480px) {
+  /* Summary cards one per row */
+  .summary-cards {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  /* Shrink summary card padding & font */
+  .summary-card {
+    padding: 6px;
+    font-size: 11px;
+  }
+  .summary-card .icon {
+    font-size: 16px;
+  }
+
+  /* Further adjust sections */
+  .dashboard-section {
+    padding: 8px;
+    font-size: 9px;
+  }
+
+  /* Chart sizing */
+  .chart-wrapper {
+    height: 200px;
+  }
+
+  /* Activity item text smaller */
+  .activity-item {
+    font-size: 11px;
+  }
+}

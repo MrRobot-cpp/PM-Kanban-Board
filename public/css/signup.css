@@ -1,10 +1,13 @@
+/* Base Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+/* Page & Waves */
 body {
   background: #f8f8f8;
   position: relative;
@@ -39,11 +42,13 @@ body {
   border-radius: 0 0 0 100%;
 }
 
+/* Header */
 header {
   display: flex;
   justify-content: space-between;
-  padding: 20px 40px;
   align-items: center;
+  padding: 20px 40px;
+  flex-wrap: wrap; /* allows items to wrap on small screens */
 }
 
 .logo {
@@ -59,7 +64,6 @@ header {
   border-radius: 8px;
   position: relative;
 }
-
 .logo-icon::before {
   content: "";
   position: absolute;
@@ -86,10 +90,10 @@ header {
 .header-cta {
   display: flex;
   align-items: center;
+  gap: 16px;
 }
 
 .header-text {
-  margin-right: 16px;
   font-size: 14px;
   color: #D4BEBE;
 }
@@ -103,19 +107,22 @@ header {
   border: none;
   cursor: pointer;
   font-size: 14px;
+  transition: background 0.3s, color 0.3s;
 }
 .login-btn:hover {
   background-color: #0B3954;
   color: #D4BEBE;
 }
 
+/* Main Container */
 .container {
+  width: 90%;
   max-width: 480px;
   margin: 20px auto;
   background: white;
   border-radius: 8px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  padding: 40px;
+  padding: 40px 20px;
   text-align: center;
 }
 
@@ -125,6 +132,7 @@ h1 {
   color: #333;
 }
 
+/* Divider */
 .divider {
   display: flex;
   align-items: center;
@@ -132,7 +140,6 @@ h1 {
   margin: 24px 0;
   font-size: 14px;
 }
-
 .divider::before,
 .divider::after {
   content: "";
@@ -140,31 +147,27 @@ h1 {
   height: 1px;
   background: #eee;
 }
-
 .divider::before {
   margin-right: 16px;
 }
-
 .divider::after {
   margin-left: 16px;
 }
 
+/* Form */
 .form-group {
   text-align: left;
   margin-bottom: 16px;
 }
-
 .form-group label {
   display: block;
   margin-bottom: 8px;
   font-size: 14px;
   color: #444;
 }
-
 .input-wrapper {
   position: relative;
 }
-
 input[type="text"],
 input[type="email"],
 input[type="password"] {
@@ -174,7 +177,6 @@ input[type="password"] {
   border-radius: 6px;
   font-size: 14px;
 }
-
 .input-icon {
   position: absolute;
   left: 14px;
@@ -183,25 +185,24 @@ input[type="password"] {
   color: #999;
 }
 
+/* Terms */
 .term-check {
   text-align: left;
   margin-bottom: 16px;
 }
-
 .term-check input[type="checkbox"] {
   margin-right: 8px;
 }
-
 .term-check label {
   font-size: 14px;
   color: #444;
 }
-
 .term-check a {
   color: #6c5ce7;
   text-decoration: none;
 }
 
+/* Signup Button */
 .signup-btn {
   width: 100%;
   background-color: #D4BEBE;
@@ -213,24 +214,24 @@ input[type="password"] {
   border: none;
   cursor: pointer;
   margin: 16px 0;
+  transition: background 0.3s, color 0.3s;
 }
 .signup-btn:hover {
   background-color: #0B3954;
   color: #D4BEBE;
 }
 
+/* Footer & Help */
 .footer {
   text-align: center;
   margin-top: 24px;
   font-size: 13px;
   color: #666;
 }
-
 .footer a {
   color: #6c5ce7;
   text-decoration: none;
 }
-
 .help-btn {
   position: fixed;
   bottom: 20px;
@@ -244,84 +245,76 @@ input[type="password"] {
   justify-content: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   color: #6c5ce7;
-  text-decoration: none;
   font-size: 24px;
 }
-
 .help-text {
   font-size: 12px;
   margin-top: 4px;
 }
 
-/* Media Queries for Responsiveness */
+/* ===== RESPONSIVE ===== */
+
+/* Tablet layout */
 @media (max-width: 768px) {
   header {
     flex-direction: column;
     align-items: flex-start;
+    padding: 20px;
   }
-
   .header-cta {
     margin-top: 10px;
   }
-
   .container {
     padding: 20px;
   }
-
-  .signup-btn, .login-btn {
+  .login-btn,
+  .signup-btn {
     padding: 10px;
     font-size: 14px;
   }
-
   h1 {
     font-size: 24px;
   }
-
   .form-group label {
     font-size: 12px;
   }
-
-  input[type="text"], input[type="email"], input[type="password"] {
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
     padding: 10px 14px 10px 36px;
     font-size: 12px;
   }
 }
 
+/* Mobile layout */
 @media (max-width: 480px) {
   header {
     padding: 10px 20px;
   }
-
   .logo-text {
     font-size: 20px;
   }
-
-  .tagline {
-    font-size: 12px;
-  }
-
+  .tagline,
   .header-text {
     font-size: 12px;
   }
-
-  .signup-btn, .login-btn {
+  .login-btn,
+  .signup-btn {
     padding: 8px;
     font-size: 12px;
   }
-
   .container {
     padding: 15px;
   }
-
   h1 {
     font-size: 20px;
   }
-
   .form-group label {
     font-size: 10px;
   }
-
-  input[type="text"], input[type="email"], input[type="password"] {
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
     padding: 8px 12px 8px 32px;
     font-size: 10px;
   }

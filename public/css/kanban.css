@@ -1,5 +1,11 @@
-/* Default (Light Mode) */
-:root {
+/* ========================================
+   VARIABLES (LIGHT & DARK MODE)
+   ======================================== */
+   :root {
+    /* Sidebar width */
+    --sidebar-width: 250px;
+
+    /* Colors (Light Mode) */
     --bg-color: #f4f4f4;
     --text-color: #333;
     --header-bg: rgb(178, 222, 230);
@@ -13,7 +19,6 @@
     --border-radius: 5px;
 }
 
-/* Dark Mode */
 .dark-mode {
     --bg-color: #1e1e1e;
     --text-color: #eaeaea;
@@ -27,42 +32,62 @@
     --modal-shadow: rgba(255, 255, 255, 0.1);
 }
 
-/* Global Styles */
-body {
-    font-family: 'Roboto', sans-serif;
+/* ========================================
+   RESET AND BASE STYLES
+   ======================================== */
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    background-color: var(--bg-color);
+}
+html, body {
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+    background: var(--bg-color);
     color: var(--text-color);
-    transition: background 0.3s ease, color 0.3s ease;
+    overflow: hidden;
+    transition: background 0.3s, color 0.3s;
 }
-.sidebar-container {
-    width: 250px;
-    color: white;
-    position: fixed;
-    left: 0;
-    height: 100vh;
 
+
+.sidebar-container {
+    position: fixed;
+    top: 0;
+    left: -301px;
+    width: var(--sidebar-width);
+    height: 100%;
+    background: var(--header-bg);
+    color: white;
+    overflow-y: auto;
+    transition: width 0.3s;
 }
-/* Kanban Board Layout */
+
+
 .kanban-board {
-    margin-left: 13%;
+    margin-left: var(--sidebar-width);
+    padding: 20px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    padding: 20px;
     gap: 20px;
-}
-#search-input{
-    margin-left: 270px;
-    margin-top: 10px;
-    background-color:  #D4BEBE;
-    padding: 10px;
-    border-radius: 10px ;
-    border: 1px solid  #D4BEBE;
+    height: 100%;
+    overflow-y: auto;
+    transition: margin-left 0.3s;
 }
 
-/* Columns */
+
+#search-input {
+    display: block;
+    width: calc(100% - var(--sidebar-width) - 40px);
+    margin: 10px 20px;
+    padding: 10px;
+    border: 1px solid var(--column-bg);
+    border-radius: 10px;
+    background: var(--task-bg);
+    color: var(--text-color);
+    transition: width 0.3s, margin 0.3s;
+}
+
+
 .column {
     flex: 1;
     min-width: 250px;
@@ -70,75 +95,35 @@ body {
     background: var(--column-bg);
     border-radius: var(--border-radius);
     padding: 20px;
-    box-shadow: 0px 4px 6px var(--modal-shadow);
+    box-shadow: 0 4px 6px var(--modal-shadow);
 }
 
-/* Responsive Kanban Board */
-@media (max-width: 768px) {
-    .kanban-board {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .column {
-        width: 90%;
-    }
-}
-
-/* Add Task Button */
-.add-task-btn {
-    background: var(--btn-primary);
-    color: var(--column-bg);
-    border: none;
-    padding: 10px;
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    width: 100%;
-    font-size: 14px;
-}
-
-.add-task-btn:hover {
-    background: var(--btn-primary-hover);
-}
-
-/* Task List */
 .task-list {
     margin-top: 20px;
     min-height: 50px;
 }
 
-/* Task Cards */
-/* Task Cards */
 .task-card {
     background: var(--task-bg);
     padding: 12px;
     border-radius: var(--border-radius);
     margin-bottom: 10px;
-    box-shadow: 0px 2px 4px var(--modal-shadow);
+    box-shadow: 0 2px 4px var(--modal-shadow);
     cursor: grab;
-    font-size: 14px;
     display: flex;
     flex-direction: column;
-    gap: 8px; /* Adds space between elements inside the card */
+    gap: 8px;
+    font-size: 14px;
 }
-
 
 /* Priority Indicators */
-.priority-low {
-    border-left: 5px solid green;
-}
+.priority-low { border-left: 5px solid green; }
+.priority-medium { border-left: 5px solid orange; }
+.priority-high { border-left: 5px solid red; }
 
-.priority-medium {
-    border-left: 5px solid orange;
-}
-
-.priority-high {
-    border-left: 5px solid red;
-}
-
-/* Task Delete Button */
+/* Card Actions */
 .task-card .delete-btn {
-    background: crimson;
+    background: var(--btn-delete);
     color: white;
     border: none;
     padding: 6px;
@@ -146,19 +131,36 @@ body {
     cursor: pointer;
 }
 .task-card .edit-btn {
-    background-color:chocolate;
+    background: chocolate;
     color: white;
     border: none;
     padding: 6px;
     border-radius: 3px;
     cursor: pointer;
 }
+
 /* Dragging Effect */
 .dragging {
     opacity: 0.5;
 }
 
-/* Modal Styling */
+/* Add Task Button */
+.add-task-btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: var(--border-radius);
+    background: var(--btn-primary);
+    color: var(--task-bg);
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.add-task-btn:hover {
+    background: var(--btn-primary-hover);
+}
+
+
 .modal {
     display: none;
     position: fixed;
@@ -169,63 +171,114 @@ body {
     max-width: 400px;
     background: var(--modal-bg);
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 10px var(--modal-shadow);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 10px var(--modal-shadow);
     z-index: 1000;
     animation: fadeIn 0.2s ease-in-out;
 }
 
-/* Modal Input Fields */
-.modal input, 
-.modal select, 
+.modal input,
+.modal select,
 .modal textarea {
     width: 100%;
+    margin-bottom: 12px;
     padding: 10px;
-    border-radius: var(--border-radius);
     border: 1px solid var(--column-bg);
-    font-size: 14px;
-    background-color: var(--task-bg);
+    border-radius: var(--border-radius);
+    background: var(--task-bg);
     color: var(--text-color);
 }
 
-/* Modal Buttons */
 .modal button {
     padding: 10px;
-    font-size: 14px;
     border: none;
     border-radius: var(--border-radius);
     cursor: pointer;
-    transition: 0.3s;
+    font-size: 14px;
     font-weight: 500;
+    transition: background 0.3s;
 }
 
-/* Responsive Modal */
-@media (max-width: 480px) {
-    .modal {
-        width: 95%;
-        max-width: 350px;
-    }
-}
 
-/* Dark Mode Toggle */
 .theme-toggle {
     background: transparent;
     border: none;
     cursor: pointer;
     padding: 5px;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s;
 }
-
 .theme-toggle:hover {
     transform: scale(1.1);
 }
-
 #theme-icon {
     width: 32px;
     height: 32px;
-    transition: filter 0.3s ease;
+    transition: filter 0.3s;
 }
-
 .dark-mode #theme-icon {
     filter: invert(1);
+}
+
+
+@media (max-width: 992px) {
+    :root { --sidebar-width: 200px; }
+    .sidebar-container { width: var(--sidebar-width); }
+    .kanban-board { margin-left: var(--sidebar-width); }
+    #search-input { width: calc(100% - var(--sidebar-width) - 40px); }
+}
+
+/* ≤ 768px */
+@media (max-width: 768px) {
+    :root { --sidebar-width: 0; }
+    .sidebar-container {
+        position: relative;
+        width: 100%;
+        height: auto;
+    }
+    .kanban-board {
+        margin-left: 0;
+        padding-top: 10px;
+        flex-direction: column;
+        align-items: center;
+    }
+    #search-input {
+        width: 90%;
+        margin: 10px auto;
+    }
+    .column {
+        width: 90%;
+        max-width: none;
+    }
+}
+
+/* ≤ 480px */
+@media (max-width: 480px) {
+    #search-input {
+        width: 95%;
+        margin: 8px auto;
+        padding: 8px;
+        font-size: 14px;
+    }
+    .column {
+        padding: 15px;
+    }
+    .task-card {
+        padding: 10px;
+        font-size: 13px;
+    }
+    .add-task-btn {
+        padding: 8px;
+        font-size: 12px;
+    }
+    .modal {
+        width: 95%;
+        max-width: 350px;
+        padding: 15px;
+    }
+}
+
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
