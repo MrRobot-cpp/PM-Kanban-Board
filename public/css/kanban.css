@@ -53,7 +53,6 @@ html, body {
 .sidebar-container {
     position: fixed;
     top: 0;
-    left: -301px;
     width: var(--sidebar-width);
     height: 100%;
     background: var(--header-bg);
@@ -76,15 +75,15 @@ html, body {
 
 
 #search-input {
-    display: block;
     width: calc(100% - var(--sidebar-width) - 40px);
-    margin: 10px 20px;
+    margin: 10px ;
     padding: 10px;
     border: 1px solid var(--column-bg);
     border-radius: 10px;
     background: var(--task-bg);
     color: var(--text-color);
     transition: width 0.3s, margin 0.3s;
+    margin-left: 270px;
 }
 
 

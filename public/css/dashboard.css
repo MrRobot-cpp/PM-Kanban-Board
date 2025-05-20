@@ -6,9 +6,43 @@
     font-family: Arial, sans-serif;
 }
 
+:root {
+    /* Sidebar width */
+    --sidebar-width: 250px;
+
+    /* Colors (Light Mode) */
+    --bg-color: #f4f4f4;
+    --text-color: #333;
+    --header-bg: rgb(178, 222, 230);
+    --column-bg: rgb(212, 190, 190);
+    --task-bg: #fff;
+    --btn-primary: rgb(12, 2, 56);
+    --btn-primary-hover: #0056b3;
+    --btn-delete: red;
+    --modal-bg: #fff;
+    --modal-shadow: rgba(0, 0, 0, 0.2);
+    --border-radius: 5px;
+}
+
+.dark-mode {
+    --bg-color: #1e1e1e;
+    --text-color: #eaeaea;
+    --header-bg: #252526;
+    --column-bg: #333;
+    --task-bg: #2c2c2c;
+    --btn-primary: #1f6feb;
+    --btn-primary-hover: #1a5bbb;
+    --btn-delete: #ff5555;
+    --modal-bg: #252526;
+    --modal-shadow: rgba(255, 255, 255, 0.1);
+}
+
 body, html {
     height: 100%;
     overflow: hidden; /* Prevent scrolling */
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Main Layout */
@@ -20,23 +54,24 @@ body, html {
 }
 
 .sidebar-container {
-    width: 250px;
+    width: var(--sidebar-width);
     color: white;
     position: fixed;
     left: 0;
     height: 100vh;
-    background: #333; /* Add background for contrast */
+    background: var(--column-bg); /* Uses variable for sidebar background */
     overflow-y: auto;
 }
 
 .dashboard-container {
-    margin-left: 250px;
+    margin-left: var(--sidebar-width);
     flex-grow: 1;
     padding: 10px;
-    background-color: #ffffff;
+    background-color: var(--task-bg);
     display: flex;
     flex-direction: column;
     overflow-y: auto; /* Allow vertical scroll if needed */
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Summary Cards */
@@ -52,12 +87,13 @@ body, html {
     display: flex;
     align-items: center;
     gap: 5px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: var(--border-radius);
     padding: 8px;
-    background: #D4BEBE;
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    background: var(--column-bg);
+    box-shadow: 1px 1px 5px var(--modal-shadow);
     font-size: 12px;
+    color: var(--text-color);
 }
 
 .summary-card .icon {
@@ -74,15 +110,16 @@ body, html {
 
 /* Each Section */
 .dashboard-section {
-    border: 1px solid #ddd;
+    border: 1px solid rgba(0,0,0,0.1);
     border-radius: 6px;
     padding: 6px;
-    background: rgba(238, 238, 238, 0.74);
-    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+    background: var(--task-bg);
+    box-shadow: 1px 1px 4px var(--modal-shadow);
     font-size: 10px;
     max-width: 800px;
     margin: 0 auto 20px;
     position: relative;
+    color: var(--text-color);
 }
 
 /* Chart Wrapper */
@@ -101,23 +138,26 @@ body, html {
     transform: translate(-50%, -50%);
     font-size: 14px;
     font-weight: bold;
+    color: var(--text-color);
 }
 
 /* Activity Items */
 .activity-item {
     display: flex;
     align-items: center;
-    border: 1px solid #ddd;
+    border: 1px solid rgba(0,0,0,0.1);
     padding: 5px;
     border-radius: 5px;
     margin-bottom: 5px;
     font-size: 12px;
+    color: var(--text-color);
+    background: var(--task-bg);
 }
 
 .activity-item .avatar {
     width: 25px;
     height: 25px;
-    background: #007bff;
+    background: var(--btn-primary);
     color: white;
     text-align: center;
     border-radius: 50%;

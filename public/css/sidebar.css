@@ -6,15 +6,50 @@
     font-family: Arial, sans-serif;
 }
 
+/* Color Variables */
+:root {
+  --bg-color: #f4f4f4;
+  --text-color: #333;
+  --header-bg: rgb(178, 222, 230);
+  --btn-primary: rgb(12, 2, 56);
+  --btn-primary-hover: #0056b3;
+  --btn-delete: red;
+  --task-bg: #fff;
+  --modal-bg: #fff;
+  --modal-shadow: rgba(0, 0, 0, 0.2);
+  --border-radius: 5px;
+}
+
+.dark-mode {
+  --bg-color: #1e1e1e;
+  --text-color: #ffffff;
+  --header-bg: #252526;
+  --btn-primary: #1f6feb;
+  --btn-primary-hover: #1a5bbb;
+  --btn-delete: #ff5555;
+  --task-bg: #2c2c2c;
+  --modal-bg: #252526;
+  --modal-shadow: rgba(255, 255, 255, 0.1);
+  
+}
+.dark-mode .sidebar-container,
+.dark-mode .sidebar-container a,
+.dark-mode .sidebar-container h3,
+.dark-mode .sidebar-container i {
+    color: #fff;
+}
+
+
 /* Sidebar Styles */
 .sidebar {
     width: 250px;
     height: 100vh;
-    background-color: #b2dee6;
+    background-color: var(--header-bg);
     padding: 20px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 0 5px var(--modal-shadow);
     display: flex;
     flex-direction: column;
+    color: var(--text-color);
 }
 
 /* MASA Logo */
@@ -49,18 +84,18 @@
 .logo-text {
     font-weight: 800;
     font-size: 20px;
-    color: #0B3954;
+    color: var(--btn-primary);
 }
 
 .tagline {
     font-size: 12px;
-    color: #0B3954;
+    color: var(--btn-primary);
 }
 
 /* Section Headers */
 h3 {
     font-size: 14px;
-    color: #0B3954;
+    color: var(--btn-primary);
     margin-top: 20px;
     margin-bottom: 5px;
 }
@@ -75,37 +110,39 @@ h3 {
     display: flex;
     align-items: center;
     cursor: pointer;
-    border-radius: 5px;
-    transition: 0.3s;
+    border-radius: var(--border-radius);
+    transition: background 0.3s, color 0.3s;
+    color: var(--text-color);
 }
 
 /* Hover Effect */
 .menu li:hover {
-    background: #D4BEBE; /* Soft Beige */
+    background: var(--btn-primary-hover);
+    color: var(--task-bg);
 }
 
 /* Menu Icons and Text */
 .menu li i {
     font-size: 16px;
     margin-right: 10px;
-    color: #0B3954;
+    color: var(--btn-primary);
 }
 
 .menu li span {
     font-size: 14px;
-    color: #0B3954;
+    color: var(--btn-primary);
 }
 
 /* Active Item */
 .menu .active {
-    background: #D4BEBE; /* Soft Beige */
+    background: var(--btn-primary);
     font-weight: bold;
-    color: white;
+    color: var(--task-bg);
 }
 
 .menu .active i,
 .menu .active span {
-    color: white;
+    color: var(--task-bg);
 }
 
 /* Bottom Spacer */
@@ -119,15 +156,15 @@ h3 {
     padding: 10px;
     font-size: 14px;
     border: none;
-    background-color: #0B3954;
-    color: white;
+    background-color: var(--btn-primary);
+    color: var(--task-bg);
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: var(--border-radius);
     text-align: left;
     display: flex;
     align-items: center;
     gap: 10px;
-    transition: 0.3s;
+    transition: background 0.3s, color 0.3s;
 }
 
 .signout-btn i {
@@ -135,9 +172,34 @@ h3 {
 }
 
 .signout-btn:hover {
-    background-color: #D4BEBE; /* Darker Red */
-color: #0B3954;
+    background-color: var(--btn-primary-hover);
+    color: var(--task-bg);
 }
-a{
+
+a {
     text-decoration: none;
+    color: inherit;
+}
+
+/* Dark Mode Toggle Button */
+.dark-mode-toggle {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: none;
+    background-color: var(--btn-primary);
+    color: var(--task-bg);
+    cursor: pointer;
+    border-radius: var(--border-radius);
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    transition: background 0.3s, color 0.3s;
+}
+
+.dark-mode-toggle:hover {
+    background-color: var(--btn-primary-hover);
+    color: var(--task-bg);
 }
