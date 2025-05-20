@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sidebar</title>
+  <link rel="stylesheet" href="../css/sidebar.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+  />
+</head>
+<body>
+  <div class="sidebar">
+    <!-- MASA Logo -->
+    <div class="logo">
+      <div class="logo-icon"></div>
+      <div>
+        <div class="logo-text">MASA</div>
+        <div class="tagline">Visualize. Optimize. Deliver.</div>
+      </div>
+    </div>
+
+<h3>Admin Management</h3>
+    <ul class="menu">
+      <li class="active">
+        <a href="dashboardh.html">
+          <i class="fa-solid fa-gauge"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+      <li>
+        <a href="adminusers.html">
+          <i class="fa-solid fa-clipboard-list"></i>
+          <span>Users Management</span>
+        </a>
+      </li>
+      <li>
+        <a href=".html">
+          <i class="fa-solid fa-clipboard-list"></i>
+          <span>Logs</span>
+        </a>
+      </li>
+    </ul>
+    
+    
+
+    <div class="spacer"></div>
+
+    <!-- Dark Mode Button -->
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()">
+      <i class="fa-solid fa-moon"></i> Toggle Dark Mode
+    </button>
+
+    <!-- Sign Out -->
+    <button
+      onclick="window.location.href='Login.html'"
+      class="signout-btn"
+    >
+      <i class="fa-solid fa-sign-out-alt"></i> Sign Out
+    </button>
+  </div>
+
+  <script src="../js/darkModeToggle.js"></script>
+</body>
+</html>
