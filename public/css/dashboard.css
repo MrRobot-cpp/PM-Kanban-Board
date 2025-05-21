@@ -120,7 +120,7 @@ body, html {
     font-size: 10px; /* Reduce text size */
     max-width: 730px; /* Limit the section width */
     margin-bottom: 20px; 
-        background: var(--column-bg); /* instead of #D4BEBE */
+        background: var(--bg-color); /* instead of #D4BEBE */
 }
 
 /* Chart Wrapper */
