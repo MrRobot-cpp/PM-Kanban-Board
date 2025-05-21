@@ -8,35 +8,46 @@
 
 /* Color Variables */
 :root {
-  --bg-color: #f4f4f4;
-  --text-color: #333;
-  --header-bg: rgb(178, 222, 230);
-  --btn-primary: rgb(12, 2, 56);
-  --btn-primary-hover: #0056b3;
-  --btn-delete: red;
-  --task-bg: #fff;
-  --modal-bg: #fff;
-  --modal-shadow: rgba(0, 0, 0, 0.2);
-  --border-radius: 5px;
+    --bg-color: #f4f4f4;
+    --text-color: #333;
+    --header-bg: rgb(178, 222, 230);
+    --btn-primary: rgb(12, 2, 56);
+    --btn-primary-hover: #0056b3;
+    --btn-delete: red;
+    --task-bg: #fff;
+    --modal-bg: #fff;
+    --modal-shadow: rgba(0, 0, 0, 0.2);
+    --border-radius: 5px;
 }
 
 .dark-mode {
-  --bg-color: #1e1e1e;
-  --text-color: #ffffff;
-  --header-bg: #252526;
-  --btn-primary: #1f6feb;
-  --btn-primary-hover: #1a5bbb;
-  --btn-delete: #ff5555;
-  --task-bg: #2c2c2c;
-  --modal-bg: #252526;
-  --modal-shadow: rgba(255, 255, 255, 0.1);
-  
+    --bg-color: #1e1e1e;
+    --text-color: #ffffff;
+    --header-bg: #252526;
+    --btn-primary: #1f6feb;
+    --btn-primary-hover: #1a5bbb;
+    --btn-delete: #ff5555;
+    --task-bg: #2c2c2c;
+    --modal-bg: #252526;
+    --modal-shadow: rgba(255, 255, 255, 0.1);
 }
-.dark-mode .sidebar-container,
-.dark-mode .sidebar-container a,
-.dark-mode .sidebar-container h3,
-.dark-mode .sidebar-container i {
-    color: #fff;
+
+.dark-mode,
+.dark-mode * {
+    color: #fff !important;
+}
+
+/* Optional: Override specific icons or borders if needed */
+.dark-mode .logo-icon::before {
+    background: #fff;
+}
+
+.dark-mode .menu a.active {
+    color: var(--task-bg) !important;
+}
+.dark-mode .menu a.active i,
+.dark-mode .menu a.active span {
+    color: var(--task-bg) !important;
 }
 
 
@@ -106,17 +117,22 @@ h3 {
 }
 
 .menu li {
+    border-radius: var(--border-radius);
+}
+
+.menu li a {
     padding: 10px;
     display: flex;
     align-items: center;
     cursor: pointer;
     border-radius: var(--border-radius);
     transition: background 0.3s, color 0.3s;
-    color: var(--text-color);
+    color: var(--btn-primary);
+    text-decoration: none;
 }
 
 /* Hover Effect */
-.menu li:hover {
+.menu li a:hover {
     background: var(--btn-primary-hover);
     color: var(--task-bg);
 }
@@ -125,23 +141,17 @@ h3 {
 .menu li i {
     font-size: 16px;
     margin-right: 10px;
-    color: var(--btn-primary);
-}
-
-.menu li span {
-    font-size: 14px;
-    color: var(--btn-primary);
 }
 
 /* Active Item */
-.menu .active {
+.menu a.active {
     background: var(--btn-primary);
     font-weight: bold;
     color: var(--task-bg);
 }
 
-.menu .active i,
-.menu .active span {
+.menu a.active i,
+.menu a.active span {
     color: var(--task-bg);
 }
 

@@ -46,6 +46,7 @@ body, html {
 }
 
 /* Main Layout */
+/* Main Layout */
 .main-container {
     display: flex;
     height: 100vh;
@@ -64,14 +65,14 @@ body, html {
 }
 
 .dashboard-container {
-    margin-left: var(--sidebar-width);
+    margin-left: 250px;
     flex-grow: 1;
     padding: 10px;
-    background-color: var(--task-bg);
+    background-color: #ffffff;
     display: flex;
     flex-direction: column;
-    overflow-y: auto; /* Allow vertical scroll if needed */
-    transition: background-color 0.3s ease, color 0.3s ease;
+    overflow: hidden; /* Prevent scrolling */
+        background: var(--bg-color); /* instead of #D4BEBE */
 }
 
 /* Summary Cards */
@@ -81,55 +82,55 @@ body, html {
     gap: 10px;
     margin-bottom: 10px;
     height: 12%;
+        background: var(--bg-color); /* instead of #D4BEBE */
 }
 
 .summary-card {
     display: flex;
     align-items: center;
     gap: 5px;
-    border: 1px solid rgba(0,0,0,0.1);
-    border-radius: var(--border-radius);
+    border: 1px solid #ddd;
+    border-radius: 8px;
     padding: 8px;
-    background: var(--column-bg);
-    box-shadow: 1px 1px 5px var(--modal-shadow);
-    font-size: 12px;
-    color: var(--text-color);
+    background: var(--column-bg); /* instead of #D4BEBE */
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    font-size: 12px; /* Make text smaller */
 }
 
 .summary-card .icon {
-    font-size: 18px;
+    font-size: 18px; /* Reduce icon size */
 }
 
 /* Dashboard Sections */
 .dashboard-content {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    align-items: stretch;
+    grid-template-columns: 1fr 1fr; /* Ensures equal width */
+    align-items: stretch; /* Ensures equal height */
+
 }
 
-/* Each Section */
+
+
+/* Dashboard Sections */
 .dashboard-section {
-    border: 1px solid rgba(0,0,0,0.1);
-    border-radius: 6px;
-    padding: 6px;
-    background: var(--task-bg);
-    box-shadow: 1px 1px 4px var(--modal-shadow);
-    font-size: 10px;
-    max-width: 800px;
-    margin: 0 auto 20px;
-    position: relative;
-    color: var(--text-color);
+    border: 1px solid #ddd;
+    border-radius: 6px; /* Reduce corner radius */
+    background: rgba(238, 238, 238, 0.74);
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+    font-size: 10px; /* Reduce text size */
+    max-width: 730px; /* Limit the section width */
+    margin-bottom: 20px; 
+        background: var(--column-bg); /* instead of #D4BEBE */
 }
 
 /* Chart Wrapper */
 .chart-wrapper {
     width: 100%;
-    max-width: 400px;
-    height: 300px;
-    margin: auto;
-    position: relative;
+    max-width: 400px; /* Reduce max width */
+    height: 300px; /* Reduce height */
+    margin: auto; /* Center chart */
 }
+
 
 .chart-center-text {
     position: absolute;
@@ -138,26 +139,24 @@ body, html {
     transform: translate(-50%, -50%);
     font-size: 14px;
     font-weight: bold;
-    color: var(--text-color);
 }
 
-/* Activity Items */
+
+
 .activity-item {
     display: flex;
     align-items: center;
-    border: 1px solid rgba(0,0,0,0.1);
+    border: 1px solid #ddd;
     padding: 5px;
     border-radius: 5px;
     margin-bottom: 5px;
-    font-size: 12px;
-    color: var(--text-color);
-    background: var(--task-bg);
+    font-size: 12px; /* Make text smaller */
 }
 
 .activity-item .avatar {
     width: 25px;
     height: 25px;
-    background: var(--btn-primary);
+    background: #007bff;
     color: white;
     text-align: center;
     border-radius: 50%;
@@ -169,6 +168,7 @@ body, html {
     max-width: 100%;
     height: auto;
 }
+
 
 /* ========== RESPONSIVE DESIGN ========== */
 

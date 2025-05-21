@@ -23,7 +23,7 @@
 
     <h3>PLANNING</h3>
     <ul class="menu">
-      <li class="active">
+      <li>
         <a href="dashboard.html">
           <i class="fa-solid fa-gauge"></i>
           <span>Dashboard</span>
@@ -54,5 +54,19 @@
   </div>
 
   <script src="../js/darkModeToggle.js"></script>
+  <script>
+  // Get the current page name (e.g., "kanban.html")
+  const currentPath = window.location.pathname;
+  const currentPage = currentPath.substring(currentPath.lastIndexOf('/') + 1).split('?')[0].split('#')[0];
+
+  // Loop through all sidebar links
+  document.querySelectorAll('.menu li a').forEach(link => {
+    const linkPage = link.getAttribute('href');
+    if (linkPage === currentPage) {
+      link.classList.add('active');
+    }
+  });
+</script>
+
 </body>
 </html>
